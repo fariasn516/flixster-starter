@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
-import data from "./data/data";
+import data from "../data/data";
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
@@ -26,6 +26,10 @@ function MovieList() {
             title={movie.title}
             poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             rateAvg={movie.vote_average}
+            genres={movie.genre_ids}
+            runtime={movie.runtime}
+            releaseDate={movie.release_date}
+            overview={movie.overview}
           />
         ))}
       </div>
