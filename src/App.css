@@ -30,6 +30,13 @@
 .movie-card {
   border: 2px solid black;
   border-radius: 10px;
+  height: 30%;
+  width: 30%;
+}
+
+.movie-card img {
+  height: 100px;
+  width: 100px;
 }
 
 .movie-list {
