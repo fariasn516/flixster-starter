@@ -13,15 +13,8 @@ function MovieList({ searchQuery, sortInput }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setAllMovies(data.results);
-    setSearchedMovies(data.results);
-    setSortedMovies(data.results);
-
-    /*
-    // API call code - commented out for now
     const getMovies = async () => {
       try {
-        // Use the Bearer token in the Authorization header only
         const response = await fetch(URL, {
           method: 'GET',
           headers: {
@@ -37,7 +30,6 @@ function MovieList({ searchQuery, sortInput }) {
         const data = await response.json();
         console.log('API Response:', data);
         setAllMovies(data.results);
-        setFilteredMovies(data.results);
       }
       catch (error) {
         console.error('Error fetching movies:', error);
@@ -46,7 +38,6 @@ function MovieList({ searchQuery, sortInput }) {
     };
 
     getMovies();
-    */
   }, []);
 
   useEffect(() => {
@@ -98,13 +89,10 @@ function MovieList({ searchQuery, sortInput }) {
           <div className="movie-list">
             {sortedMovies.slice(0, loadedMovies).map((movie) => (
               <MovieCard
-                key={movie.id}
+                id={movie.id}
                 title={movie.title}
                 poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 rateAvg={movie.vote_average}
-                genres={movie.genre_ids}
-                releaseDate={movie.release_date}
-                overview={movie.overview}
               />
             ))}
           </div>
