@@ -58,13 +58,6 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
         getMovieDetails();
     }, []);
 
-    const formatRuntime = (minutes) => {
-        if (!minutes) return 'Unknown';
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return `${hours}h ${mins}m`;
-    };
-
     const formatGenres = (genres) => {
         if (!genres || genres.length === 0) return 'Unknown';
         return genres.map(genre => genre.name).join(', ');
@@ -100,7 +93,7 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
                         <div className="modal-info">
                             <p className="modal-rating">Rating: {movieDetails.vote_average}/10</p>
                             <p id="modal-genre">Genre: {formatGenres(movieDetails.genres)}</p>
-                            <p id="modal-runtime">Runtime: {formatRuntime(movieDetails.runtime)}</p>
+                            <p id="modal-runtime">Runtime: {movieDetails.runtime} Minutes</p>
                             <p id="modal-overview">Overview: {movieDetails.overview}</p>
                             <p id="modal-release-date">Release Date: {movieDetails.release_date}</p>
                         </div>
