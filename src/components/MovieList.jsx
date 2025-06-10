@@ -5,15 +5,17 @@ import data from "../data/data";
 const URL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 const API_TOKEN = import.meta.env.VITE_API_KEY;
 
-function MovieList({ searchQuery }) {
+function MovieList({ searchQuery, sortInput }) {
   const [allMovies, setAllMovies] = useState([]);
   const [searchedMovies, setSearchedMovies] = useState([]);
+  const [sortedMovies, setSortedMovies] = useState([]);
   const [loadedMovies, setLoadedMovies] = useState(6);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setAllMovies(data.results);
     setSearchedMovies(data.results);
+    setSortedMovies(data.results);
 
     /*
     // API call code - commented out for now
@@ -61,20 +63,40 @@ function MovieList({ searchQuery }) {
     setLoadedMovies(6);
   }, [searchQuery, allMovies]);
 
+  useEffect(() => {
+    let sorted = [...searchedMovies];
+
+    switch (sortInput) {
+      case "sort-title":
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "sort-release-date":
+        sorted.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        break;
+      case "sort-vote-average":
+        sorted.sort((a, b) => b.vote_average - a.vote_average);
+        break;
+      default:
+        break;
+    }
+
+    setSortedMovies(sorted);
+  }, [searchedMovies, sortInput]);
+
   const loadMoreMovies = () => {
     setLoadedMovies(shown => {
-      return shown + Math.min(6, searchedMovies.length - shown);
+      return shown + Math.min(6, sortedMovies.length - shown);
     });
   };
 
   return (
     <section className="movie-container">
-      {searchedMovies.length === 0 ? (
+      {sortedMovies.length === 0 ? (
         <div className="no-results">No movies found matching "{searchQuery}"</div>
       ) : (
         <>
           <div className="movie-list">
-            {searchedMovies.slice(0, loadedMovies).map((movie) => (
+            {sortedMovies.slice(0, loadedMovies).map((movie) => (
               <MovieCard
                 key={movie.id}
                 title={movie.title}
@@ -87,7 +109,7 @@ function MovieList({ searchQuery }) {
             ))}
           </div>
 
-          {loadedMovies < searchedMovies.length && (
+          {loadedMovies < sortedMovies.length && (
             <div className="load-button-container">
               <button className="load-button" onClick={loadMoreMovies}>
                 Load More
