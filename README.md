@@ -42,23 +42,23 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
     - [x] The pop-up window has a shadow to show that it is a pop-up and appears floating on the screen.
     - [x] The backdrop of the pop-up appears darker or in a different shade than before. including:
     - [x] The pop-up displays additional details about the moving including:
-      - [ ] Runtime in minutes
+      - [x] Runtime in minutes
       - [x] Backdrop poster
       - [x] Release date
-      - [ ] Genres
+      - [x] Genres
       - [x] An overview
   - [x] Users can use a drop-down menu to sort movies.
     - [x] Drop-down allows movies to be sorted by:
       - [x] Title (alphabetic, A-Z)
       - [x] Release date (chronologically, most recent to oldest)
       - [x] Vote average (descending, highest to lowest)
-    - [ ] When a sort option is clicked, movies display in a grid according to selected criterion.
+    - [x] When a sort option is clicked, movies display in a grid according to selected criterion.
   - [ ] Website displays:
     - [ ] Header section
     - [ ] Banner section
-    - [ ] Search bar
-    - [ ] Movie grid
-    - [ ] Footer section
+    - [x] Search bar
+    - [x] Movie grid
+    - [x] Footer section
     - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
   - [ ] **Deployment**
   - [ ] Website is deployed via Render.
@@ -67,9 +67,9 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
 #### STRETCH FEATURES
 
 
-- [ ] **Embedded Movie Trailers**
-  - [ ] Within the pop-up modal displaying a movie's details, the movie trailer is viewable.
-    - [ ] When the trailer is clicked, users can play the movie trailer.
+- [x] **Embedded Movie Trailers**
+  - [x] Within the pop-up modal displaying a movie's details, the movie trailer is viewable.
+    - [x] When the trailer is clicked, users can play the movie trailer.
 - [ ] **Favorite Button**
   - [ ] For each movie displayed, users can favorite the movie.
   - [ ] There should be visual element (such as a heart icon) on each movie's tile to show whether or not the movie has been favorited.
