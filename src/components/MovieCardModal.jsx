@@ -69,34 +69,34 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
         <section className="modal-open">
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                        <div className="modal-header">
-                            <h2 className="modal-title">{movieDetails.title}</h2>
-                            <div className="modal-image">
-                                <img
-                                    className="modal-poster"
-                                    src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
-                                    alt={`${movieDetails.title} Backdrop Poster`}
-                                />
-                            </div>
-                        </div>
+                <div className="modal-header">
+                    <h2 className="modal-title">{movieDetails.title}</h2>
+                    <div className="modal-image">
+                        <img
+                            className="modal-poster"
+                            src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
+                            alt={`${movieDetails.title} Backdrop Poster`}
+                        />
+                    </div>
+                </div>
 
-                        {trailer && (
-                            <div className="modal-trailer">
-                                <h3>Official Trailer</h3>
-                                <iframe
-                                    src={`https://www.youtube.com/embed/${trailer.key}`}
-                                    title={`${movieDetails.title} Trailer`}
-                                ></iframe>
-                            </div>
-                        )}
+                {trailer && (
+                    <div className="modal-trailer">
+                        <h3>Official Trailer</h3>
+                        <iframe
+                            src={`https://www.youtube.com/embed/${trailer.key}`}
+                            title={`${movieDetails.title} Trailer`}
+                        ></iframe>
+                    </div>
+                )}
 
-                        <div className="modal-info">
-                            <p className="modal-rating">Rating: {movieDetails.vote_average}/10</p>
-                            <p id="modal-genre">Genre: {formatGenres(movieDetails.genres)}</p>
-                            <p id="modal-runtime">Runtime: {movieDetails.runtime} Minutes</p>
-                            <p id="modal-overview">Overview: {movieDetails.overview}</p>
-                            <p id="modal-release-date">Release Date: {movieDetails.release_date}</p>
-                        </div>
+                <div className="modal-info">
+                    <p className="modal-rating">Rating: {movieDetails.vote_average}/10</p>
+                    <p id="modal-genre">Genre: {formatGenres(movieDetails.genres)}</p>
+                    <p id="modal-runtime">Runtime: {movieDetails.runtime} Minutes</p>
+                    <p id="modal-overview">Overview: {movieDetails.overview}</p>
+                    <p id="modal-release-date">Release Date: {movieDetails.release_date}</p>
+                </div>
             </div>
         </section>
     );
