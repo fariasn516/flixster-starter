@@ -30,6 +30,7 @@ function MovieList({ searchQuery, sortInput }) {
         const data = await response.json();
         console.log('API Response:', data);
         setAllMovies(data.results);
+        setSearchedMovies(data.results);
       }
       catch (error) {
         console.error('Error fetching movies:', error);
@@ -89,7 +90,7 @@ function MovieList({ searchQuery, sortInput }) {
           <div className="movie-list">
             {sortedMovies.slice(0, loadedMovies).map((movie) => (
               <MovieCard
-                id={movie.id}
+                key={movie.id}
                 title={movie.title}
                 poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 rateAvg={movie.vote_average}
