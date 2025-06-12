@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
-import data from "../data/data";
 
 const URL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 const API_TOKEN = import.meta.env.VITE_API_KEY;
@@ -9,28 +8,37 @@ function MovieList({ searchQuery, sortInput }) {
   const [allMovies, setAllMovies] = useState([]);
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
-  const [loadedMovies, setLoadedMovies] = useState(6);
+  const [loadedMovies, setLoadedMovies] = useState(12);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const getMovies = async () => {
-      try {
-        const response = await fetch(URL, {
-          method: 'GET',
-          headers: {
-            'accept': 'application/json',
-            'Authorization': `Bearer ${API_TOKEN}`
-          }
-        });
+      const totalPagesToFetch = 3;
+      let allResults = [];
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+      try {
+        for (let page = 1; page <= totalPagesToFetch; page++) {
+          const response = await fetch(`${URL}&page=${page}`, {
+            method: 'GET',
+            headers: {
+              'accept': 'application/json',
+              'Authorization': `Bearer ${API_TOKEN}`
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          allResults = [...allResults, ...data.results];
         }
 
-        const data = await response.json();
-        console.log('API Response:', data);
-        setAllMovies(data.results);
-        setSearchedMovies(data.results);
+        const uniqueMovies = Array.from(new Map(
+          allResults.map(movie => [movie.id, movie])
+        ).values());
+
+        setAllMovies(uniqueMovies);
       }
       catch (error) {
         console.error('Error fetching movies:', error);
@@ -52,7 +60,7 @@ function MovieList({ searchQuery, sortInput }) {
       setSearchedMovies(searched);
     }
 
-    setLoadedMovies(6);
+    setLoadedMovies(12);
   }, [searchQuery, allMovies]);
 
   useEffect(() => {
@@ -71,13 +79,15 @@ function MovieList({ searchQuery, sortInput }) {
       default:
         break;
     }
+    console.log(sorted.map(m => m.release_date));
 
     setSortedMovies(sorted);
   }, [searchedMovies, sortInput]);
 
+
   const loadMoreMovies = () => {
     setLoadedMovies(shown => {
-      return shown + Math.min(6, sortedMovies.length - shown);
+      return shown + Math.min(12, sortedMovies.length - shown);
     });
   };
 
@@ -90,7 +100,7 @@ function MovieList({ searchQuery, sortInput }) {
           <div className="movie-list">
             {sortedMovies.slice(0, loadedMovies).map((movie) => (
               <MovieCard
-                key={movie.id}
+                id={movie.id}
                 title={movie.title}
                 poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 rateAvg={movie.vote_average}

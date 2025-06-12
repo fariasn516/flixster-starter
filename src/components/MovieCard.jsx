@@ -28,11 +28,13 @@ function MovieCard(props) {
   return (
     <>
       <article className="movie-card" onClick={openMovieModal}>
-        <h2>{props.title}</h2>
         <img src={props.poster} alt={`${props.title} Poster`} />
-        <p>Rating: {props.rateAvg}/10</p>
-        <button onClick={handleLike} className="movie-like-button">{isLiked ? `♥️` : `♡`}</button>
-        <button onClick={handleWatched} className="movie-watched-button">{isWatched ? `👀👍` : `👀👎`}</button>
+        <h2>{props.title}</h2>
+        <p className="movie-card-rating"><strong>Rating: </strong>{props.rateAvg}/10</p>
+        <div className="movie-card-buttons">
+          <button onClick={handleLike} className="movie-like-button">{isLiked ? `❤️` : `♡`}</button>
+          <button onClick={handleWatched} className="movie-watched-button">{isWatched ? `✓` : `✗`}</button>
+        </div>
       </article>
 
       <MovieCardModal

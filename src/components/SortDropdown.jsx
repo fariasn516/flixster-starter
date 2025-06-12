@@ -8,7 +8,7 @@ function SortDropdown({ onSortInput, sortValue }) {
 
   return (
     <section className="sort-dropdown">
-      <label>Sort by: </label>
+      <label className="sort-by-label">Sort by: </label>
       <select
         value={sortValue}
         onChange={handleSortInput}

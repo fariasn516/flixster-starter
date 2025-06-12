@@ -7,11 +7,13 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
     const [movieDetails, setMovieDetails] = useState(null);
     const [trailer, setTrailer] = useState(null);
     const [error, setError] = useState(null);
-
-
     useEffect(() => {
         const getMovieDetails = async () => {
             try {
+                setMovieDetails(null);
+                setTrailer(null);
+                setError(null);
+
                 const detailsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, {
                     method: 'GET',
                     headers: {
@@ -55,12 +57,34 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
             }
         };
 
-        getMovieDetails();
-    }, []);
+        if (movieId) {
+            getMovieDetails();
+        }
+    }, [movieId]);
 
     const formatGenres = (genres) => {
-        if (!genres || genres.length === 0) return 'Unknown';
-        return genres.map(genre => genre.name).join(', ');
+        return genres.map(genre => genre.name);
+    };
+
+    const createRatingStars = (rating) => {
+        const fullStars = Math.floor(rating / 2);
+        const hasHalfStar = rating % 2 >= 0.5;
+        const stars = [];
+
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<span key={`full-${i}`}>★</span>);
+        }
+
+        if (hasHalfStar) {
+            stars.push(<span key="half">✬</span>);
+        }
+
+        const emptyStars = 5 - stars.length;
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<span key={`empty-${i}`}>☆</span>);
+        }
+
+        return stars;
     };
 
     if (!isOpen) return null;
@@ -70,32 +94,47 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
                 <div className="modal-header">
-                    <h2 className="modal-title">{movieDetails.title}</h2>
                     <div className="modal-image">
                         <img
-                            className="modal-poster"
-                            src={`https://image.tmdb.org/t/p/w500${movieDetails.backdrop_path}`}
-                            alt={`${movieDetails.title} Backdrop Poster`}
+                            src={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path || movieDetails.poster_path}`}
+                            alt={`${movieDetails.title} Backdrop`}
                         />
                     </div>
+                    <h2 className="modal-title">{movieDetails.title}</h2>
                 </div>
 
-                {trailer && (
-                    <div className="modal-trailer">
-                        <h3>Official Trailer</h3>
-                        <iframe
-                            src={`https://www.youtube.com/embed/${trailer.key}`}
-                            title={`${movieDetails.title} Trailer`}
-                        ></iframe>
-                    </div>
-                )}
+                <div className="modal-body">
+                    <div className="modal-info">
+                        <div className="modal-info-left">
+                            <div className="modal-genre-tags">
+                                {formatGenres(movieDetails.genres).map((genre, index) => (
+                                    <span key={index} className="genre-tag">{genre}</span>
+                                ))}
+                            </div>
+                            <p className="modal-rating">
+                                Rating: {movieDetails.vote_average.toFixed(1)}/10
+                                <span className="rating-stars">
+                                    {createRatingStars(movieDetails.vote_average)}
+                                </span>
+                            </p>
+                            <p><strong>Runtime:</strong> {movieDetails.runtime} Minutes</p>
+                            <p><strong>Release Date:</strong> {movieDetails.release_date}</p>
+                        </div>
 
-                <div className="modal-info">
-                    <p className="modal-rating">Rating: {movieDetails.vote_average}/10</p>
-                    <p id="modal-genre">Genre: {formatGenres(movieDetails.genres)}</p>
-                    <p id="modal-runtime">Runtime: {movieDetails.runtime} Minutes</p>
-                    <p id="modal-overview">Overview: {movieDetails.overview}</p>
-                    <p id="modal-release-date">Release Date: {movieDetails.release_date}</p>
+                        <div className="modal-info-right">
+                            <p id="modal-overview"><strong>Overview:</strong> {movieDetails.overview}</p>
+                        </div>
+                    </div>
+
+                    {trailer && (
+                        <div className="modal-trailer">
+                            <h3>Official Trailer</h3>
+                            <iframe
+                                src={`https://www.youtube.com/embed/${trailer.key}`}
+                                title={`${movieDetails.title} Trailer`}
+                            ></iframe>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

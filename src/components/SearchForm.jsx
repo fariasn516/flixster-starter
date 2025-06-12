@@ -23,9 +23,9 @@ function SearchForm({ onSearch, onClear }) {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search movies..."
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="search-button">Search</button>
+        <button onClick={handleClear} className="clear-button">Clear</button>
       </form>
-      <button onClick={handleClear}>Clear</button>
     </section>
   );
 }

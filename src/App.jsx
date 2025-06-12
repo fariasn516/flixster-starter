@@ -28,12 +28,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <div className="menu-button" onClick={openSidebar}>
-          <button>open sidebar</button>
+      <header className="App-header">
+        <div className='header-and-menu'>
+          <button onClick={openSidebar} className='hamburger-button'>☰</button>
+          <Sidebar isOpen={isSidebarOpen} />
+          <h1 className='app-title'> ✧ Flixster ✧  </h1>
         </div>
-        <h1>Flixster Movie App</h1>
-        <Sidebar isOpen={isSidebarOpen} />
+        <div className='search-and-sort'>
         <SearchForm
           onSearch={handleSearch}
           onClear={handleClear}
@@ -42,7 +43,8 @@ const App = () => {
           onSortInput={handleSortInput}
           sortValue={sortInput}
         />
-      </header>
+        </div>
+      </header >
       <main>
         <MovieList
           searchQuery={searchQuery}
@@ -50,7 +52,7 @@ const App = () => {
         />
       </main>
       <footer>© 2025 Flixster by Nancy F.</footer>
-    </div>
+    </div >
   );
 };
 

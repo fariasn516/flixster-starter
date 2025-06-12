@@ -4,7 +4,7 @@ Submitted by: **Nancy Farias**
 
 Estimated time spent: **12** hours spent in total
 
-Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Flixster Deployed Site](https://flixster-starter-mq9w.onrender.com/)
 
 ### Application Features
 
@@ -53,9 +53,9 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
       - [x] Release date (chronologically, most recent to oldest)
       - [x] Vote average (descending, highest to lowest)
     - [x] When a sort option is clicked, movies display in a grid according to selected criterion.
-  - [ ] Website displays:
-    - [ ] Header section
-    - [ ] Banner section
+  - [x] Website displays:
+    - [x] Header section
+    - [x] Banner section
     - [x] Search bar
     - [x] Movie grid
     - [x] Footer section
