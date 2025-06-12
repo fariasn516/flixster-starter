@@ -40,7 +40,7 @@ function MovieCard(props) {
       <MovieCardModal
         isOpen={isModalOpen}
         onClose={closeMovieModal}
-        movieId={props.id}
+        movieId={props.key}
       />
     </>
   );

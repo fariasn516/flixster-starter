@@ -79,7 +79,6 @@ function MovieList({ searchQuery, sortInput }) {
       default:
         break;
     }
-    console.log(sorted.map(m => m.release_date));
 
     setSortedMovies(sorted);
   }, [searchedMovies, sortInput]);
