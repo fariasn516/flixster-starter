@@ -23,11 +23,16 @@ const App = () => {
   };
 
   const openSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsSidebarOpen(true);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
   };
 
   return (
     <div className="App">
+      {isSidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar}></div>}
       <header className="App-header">
         <div className='header-and-menu'>
           <button onClick={openSidebar} className='hamburger-button'>☰</button>
