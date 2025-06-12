@@ -27,9 +27,12 @@
 .search-and-sort {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 700px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
 }
 
 .hamburger-button {
@@ -57,18 +60,48 @@
   color: white;
 }
 
+@media (max-width: 768px) {
+  .search-and-sort {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+
+  .sort-dropdown {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .movie-card {
+    width: 30%;
+  }
+}
+
 @media (max-width: 600px) {
   .movie-card {
     width: 100%;
   }
 
-  .search-bar {
+  .search-form form {
     flex-direction: column;
-    gap: 10px;
+    align-items: stretch;
   }
 
-  .search-bar form {
-    flex-direction: column;
+  .search-form input {
+    margin-bottom: 10px;
+    min-width: auto;
+  }
+
+  .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .app-title {
+    font-size: 32px;
   }
 }
 
@@ -415,6 +448,11 @@ footer {
   transform: translateY(-1px);
 }
 
+.search-form {
+  width: 100%;
+  max-width: 300px;
+}
+
 .search-form form {
   display: flex;
   align-items: center;
@@ -444,6 +482,7 @@ footer {
 .sort-by-label {
   font-size: 20px;
   margin-right: 10px;
+  white-space: nowrap;
 }
 
 .sort-dropdown select {
@@ -458,6 +497,7 @@ footer {
   appearance: none;
   padding-right: 30px;
   transition: all 0.2s ease;
+  min-width: 200px;
 }
 
 .sort-dropdown::after {
