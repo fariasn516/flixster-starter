@@ -26,7 +26,7 @@ const App = () => {
   const [showWatched, setShowWatched] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('flixster-favorites', JSON.stringify(watched));
+    localStorage.setItem('flixster-watched', JSON.stringify(watched));
   }, [watched]);
 
   const handleSearch = (query) => {
