@@ -29,9 +29,9 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
     - [x] Clicks the Submit/Search button
   - [x] Users can click the Clear button. When clicked:
     - [x] Most recent search results are cleared from the text input field and the grid view and all current movies are displayed in a grid view
-- [ ] **Design Features**
-  - [ ] Website implements all of the following accessibility features:
-    - [ ] Semantic HTML
+- [x] **Design Features**
+  - [x] Website implements all of the following accessibility features:
+    - [x] Semantic HTML
     - [x] [Color contrast](https://webaim.org/resources/contrastchecker/)
     - [x] Alt text for images
   - [x] Website implements responsive web design.
@@ -59,7 +59,7 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
     - [x] Search bar
     - [x] Movie grid
     - [x] Footer section
-    - [ ] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
+    - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: To ease the grading process, please use the [color contrast checker](https://webaim.org/resources/contrastchecker/) to demonstrate to the grading team that text and background colors on your website have appropriate contrast. The Contrast Ratio should be above 4.5:1 and should have a green box surrounding it.
   - [x] **Deployment**
   - [x] Website is deployed via Render.
   - [x] **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS**: For ease of grading, please use the deployed version of your website when creating your walkthrough.
@@ -108,20 +108,20 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+The lab topics were definitely helpful in building out most of the features in this assignment. However, local storage, especially for saving favorites and watched movies, wasn't really covered. I had experience with it from past work, but I wasn’t sure if it was okay to use here since it wasn’t directly addressed in labs.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+If I had more time, I would’ve set up the local storage structure for the favorite and watched features earlier on. That would’ve made the sidebar implementation much smoother.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+Overall, I think the breakdown of components went really well. The sidebar took longer than expected, but I was able to get it working in the end. One thing I noticed from my peers was how some of them tested across different screen sizes more proactively. I’d definitely like to incorporate more of that next time to make sure everything stays consistent and responsive.
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
-
+- [The Movie Database (TMDB) API](https://www.themoviedb.org/documentation/api) - API for fetching movie data
+- [YouTube Embed](https://developers.google.com/youtube/iframe_api_reference) - For embedding movie trailers
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Big shout out to Mercy for giving me some great tips on how to implement the sidebar!!

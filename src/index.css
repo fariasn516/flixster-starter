@@ -7,3 +7,18 @@ body {
   font-family: Arialrgb(255, 229, 253)serif;
   background-color: #F5F5F5;
 }
+
+main {
+  flex: 1;
+}
+
+footer {
+  background-color: white;
+  color: grey;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 10px;
+  border-top: 1px solid grey;
+  text-align: left;
+  margin-top: auto;
+}

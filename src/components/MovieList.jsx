@@ -110,15 +110,15 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
   return (
     <section className="movie-container">
       {displayedMovies.length === 0 ? (
-        <div className="no-results">
+        <p className="no-results">
           {"No movies found."}
-        </div>
+        </p>
       ) : (
         <>
-          <div className="movie-list">
+          <ul className="movie-list">
             {displayedMovies.slice(0, loadedMovies).map((movie) => (
-              <MovieCard
-                key={movie.id}
+               <li key={movie.id} className="movie-list-item">
+                <MovieCard
                 id={movie.id}
                 title={movie.title}
                 poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -128,8 +128,9 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
                 isWatched={watched.includes(movie.id)}
                 onToggleWatched={() => toggleWatched(movie.id)}
               />
+              </li>
             ))}
-          </div>
+          </ul>
 
           {loadedMovies < displayedMovies.length && (
             <div className="load-button-container">

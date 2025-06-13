@@ -92,18 +92,16 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
     return (
         <section className="modal-open">
             <div className="modal-content">
-                <span className="close" onClick={onClose}>&times;</span>
-                <div className="modal-header">
-                    <div className="modal-image">
-                        <img
-                            src={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
-                            alt={`${movieDetails.title} Backdrop`}
-                        />
-                    </div>
+                <button className="close" onClick={onClose}>&times;</button>
+                <section className="modal-header">
+                    <img className="modal-image"
+                        src={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
+                        alt={`${movieDetails.title} Backdrop`}
+                    />
                     <h2 className="modal-title">{movieDetails.title}</h2>
-                </div>
+                </section>
 
-                <div className="modal-body">
+                <section className="modal-body">
                     <div className="modal-info">
                         <div className="modal-info-left">
                             <div className="modal-genre-tags">
@@ -135,7 +133,7 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
                             ></iframe>
                         </div>
                     )}
-                </div>
+                </section>
             </div>
         </section>
     );
