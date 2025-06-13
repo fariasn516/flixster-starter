@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "./MovieCard";
 
-const URL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
+const URL =
+  "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc";
 const API_TOKEN = import.meta.env.VITE_API_KEY;
 
-function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavorites, watched, toggleWatched, showWatched }) {
+function MovieList({
+  searchQuery,
+  sortInput,
+  favorites,
+  toggleFavorite,
+  showFavorites,
+  watched,
+  toggleWatched,
+  showWatched,
+}) {
   const [allMovies, setAllMovies] = useState([]);
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
@@ -20,11 +30,11 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
       try {
         for (let page = 1; page <= totalPagesToFetch; page++) {
           const response = await fetch(`${URL}&page=${page}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
-              'accept': 'application/json',
-              'Authorization': `Bearer ${API_TOKEN}`
-            }
+              accept: "application/json",
+              Authorization: `Bearer ${API_TOKEN}`,
+            },
           });
 
           if (!response.ok) {
@@ -35,14 +45,13 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
           allResults = [...allResults, ...data.results];
         }
 
-        const uniqueMovies = Array.from(new Map(
-          allResults.map(movie => [movie.id, movie])
-        ).values());
+        const uniqueMovies = Array.from(
+          new Map(allResults.map((movie) => [movie.id, movie])).values()
+        );
 
         setAllMovies(uniqueMovies);
-      }
-      catch (err) {
-        setError('Failed to load movies.');
+      } catch (err) {
+        setError("Failed to load movies.");
       }
     };
 
@@ -52,9 +61,8 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
   useEffect(() => {
     if (!searchQuery) {
       setSearchedMovies(allMovies);
-    }
-    else {
-      const searched = allMovies.filter(movie =>
+    } else {
+      const searched = allMovies.filter((movie) =>
         movie.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setSearchedMovies(searched);
@@ -71,7 +79,9 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
         sorted.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case "sort-release-date":
-        sorted.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        sorted.sort(
+          (a, b) => new Date(b.release_date) - new Date(a.release_date)
+        );
         break;
       case "sort-vote-average":
         sorted.sort((a, b) => b.vote_average - a.vote_average);
@@ -85,7 +95,9 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
 
   useEffect(() => {
     if (showFavorites) {
-      const favoriteMovies = sortedMovies.filter(movie => favorites.includes(movie.id));
+      const favoriteMovies = sortedMovies.filter((movie) =>
+        favorites.includes(movie.id)
+      );
       setDisplayedMovies(favoriteMovies);
     } else {
       setDisplayedMovies(sortedMovies);
@@ -94,7 +106,9 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
 
   useEffect(() => {
     if (showWatched) {
-      const watchedMovies = sortedMovies.filter(movie => watched.includes(movie.id));
+      const watchedMovies = sortedMovies.filter((movie) =>
+        watched.includes(movie.id)
+      );
       setDisplayedMovies(watchedMovies);
     } else {
       setDisplayedMovies(sortedMovies);
@@ -102,7 +116,7 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
   }, [sortedMovies, watched, showWatched]);
 
   const loadMoreMovies = () => {
-    setLoadedMovies(shown => {
+    setLoadedMovies((shown) => {
       return shown + Math.min(12, displayedMovies.length - shown);
     });
   };
@@ -110,24 +124,22 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
   return (
     <section className="movie-container">
       {displayedMovies.length === 0 ? (
-        <p className="no-results">
-          {"No movies found."}
-        </p>
+        <p className="no-results">{"No movies found."}</p>
       ) : (
         <>
           <ul className="movie-list">
             {displayedMovies.slice(0, loadedMovies).map((movie) => (
-               <li key={movie.id} className="movie-list-item">
+              <li key={movie.id} className="movie-list-item">
                 <MovieCard
-                id={movie.id}
-                title={movie.title}
-                poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                rateAvg={movie.vote_average}
-                isFavorite={favorites.includes(movie.id)}
-                onToggleFavorite={() => toggleFavorite(movie.id)}
-                isWatched={watched.includes(movie.id)}
-                onToggleWatched={() => toggleWatched(movie.id)}
-              />
+                  id={movie.id}
+                  title={movie.title}
+                  poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  rateAvg={movie.vote_average}
+                  isFavorite={favorites.includes(movie.id)}
+                  onToggleFavorite={() => toggleFavorite(movie.id)}
+                  isWatched={watched.includes(movie.id)}
+                  onToggleWatched={() => toggleWatched(movie.id)}
+                />
               </li>
             ))}
           </ul>

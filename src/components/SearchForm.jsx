@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../App.css';
+import "../App.css";
 
 function SearchForm({ onSearch, onClear }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,7 +9,7 @@ function SearchForm({ onSearch, onClear }) {
     onSearch(searchQuery);
   };
 
-  const handleClear = () => {
+  const handleClear = () => {f
     setSearchQuery("");
     onClear();
   };
@@ -23,8 +23,12 @@ function SearchForm({ onSearch, onClear }) {
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search movies..."
         />
-        <button type="submit" className="search-button">Search</button>
-        <button onClick={handleClear} className="clear-button">Clear</button>
+        <button type="submit" className="search-button">
+          Search
+        </button>
+        <button onClick={handleClear} className="clear-button">
+          Clear
+        </button>
       </form>
     </section>
   );

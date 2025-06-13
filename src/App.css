@@ -76,22 +76,14 @@
     justify-content: center;
   }
 
-  .movie-card {
-    width: 30%;
-  }
-
-  .movie-list-item {
-    width: 30%;
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
 
 @media (max-width: 600px) {
-  .movie-card {
-    width: 100%;
-  }
-
-  .movie-list-item {
-    width: 100%;
+  .movie-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 
   .search-form form {
@@ -119,7 +111,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 2px solid black;
   border-radius: 15px;
-  height: 350px;
+  height: auto;
   width: 100%;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
@@ -127,6 +119,7 @@
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 2/3;
 }
 
 .movie-card:hover {
@@ -136,31 +129,36 @@
 
 .movie-card img {
   border-radius: 13px 13px 0 0;
-  height: 220px;
+  height: 60%;
   width: 100%;
+  object-fit: cover;
 }
 
 .movie-card h2 {
-  font-size: 16px;
-  margin: 15px 5px;
-  height: 40px;
+  font-size: clamp(12px, 3vw, 16px);
+  margin: 10px 5px;
+  height: auto;
+  max-height: 40px;
   overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .movie-card-rating {
   color: #424141;
-  font-size: 14px;
+  font-size: clamp(10px, 2.5vw, 14px);
   margin: 0 0 5px;
-  height: 20px;
+  height: auto;
 }
 
 .movie-card-buttons {
   display: flex;
   justify-content: center;
-  gap: 60%;
+  gap: 40%;
   margin-top: auto;
   padding: 10px 0;
-  height: 46px;
+  height: auto;
 }
 
 .movie-like-button,
@@ -193,19 +191,21 @@
 }
 
 .movie-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
   justify-content: center;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 20px;
+  width: calc(100% - 40px);
+  max-width: 1400px;
 }
 
 .movie-list-item {
-  width: 15%;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .modal {
