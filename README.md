@@ -101,11 +101,11 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
 ### Walkthrough Video
 
 <div>
-    <a href="https://www.loom.com/share/e147e0bbfcb140d89a086a7c3ed7bb9d">
-      <p>Exploring the Features of My Flixster Web App 🎥 - Watch Video</p>
+    <a href="https://www.loom.com/share/4a1bf7017b8344b8a30a2124eedda7d4">
+      <p>Exploring the Features of My Flixster Web App - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/e147e0bbfcb140d89a086a7c3ed7bb9d">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/e147e0bbfcb140d89a086a7c3ed7bb9d-4f2fb4162ddfa5a3-full-play.gif">
+    <a href="https://www.loom.com/share/4a1bf7017b8344b8a30a2124eedda7d4">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/4a1bf7017b8344b8a30a2124eedda7d4-434656836a0cbc45-full-play.gif">
     </a>
   </div>
 
