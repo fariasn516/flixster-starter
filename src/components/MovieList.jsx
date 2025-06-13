@@ -99,6 +99,7 @@ function MovieList({ searchQuery, sortInput }) {
           <div className="movie-list">
             {sortedMovies.slice(0, loadedMovies).map((movie) => (
               <MovieCard
+                key={movie.id}
                 id={movie.id}
                 title={movie.title}
                 poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

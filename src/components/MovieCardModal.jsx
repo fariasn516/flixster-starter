@@ -96,7 +96,7 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
                 <div className="modal-header">
                     <div className="modal-image">
                         <img
-                            src={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path || movieDetails.poster_path}`}
+                            src={`https://image.tmdb.org/t/p/w1280${movieDetails.backdrop_path}`}
                             alt={`${movieDetails.title} Backdrop`}
                         />
                     </div>
