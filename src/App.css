@@ -61,6 +61,24 @@
   color: white;
 }
 
+@media (max-width: 1200px) {
+  .movie-list-item {
+    width: 18%;
+  }
+}
+
+@media (max-width: 900px) {
+  .movie-list-item {
+    width: 23%;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-list-item {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .search-and-sort {
     flex-direction: column;
@@ -206,6 +224,7 @@
   width: 15%;
   margin: 0;
   padding: 0;
+  min-width: 200px;
 }
 
 .modal {
