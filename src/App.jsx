@@ -1,32 +1,32 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import MovieList from "./components/MovieList";
-import SearchForm from "./components/SearchForm";
-import SortDropdown from "./components/SortDropdown";
-import Sidebar from "./components/Sidebar";
+import { useState, useEffect } from 'react';
+import './App.css';
+import MovieList from './components/MovieList';
+import SearchForm from './components/SearchForm';
+import SortDropdown from './components/SortDropdown';
+import Sidebar from './components/Sidebar';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortInput, setSortInput] = useState("default");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [favorites, setFavorites] = useState(() => {
-    const savedFavorites = localStorage.getItem("flixster-favorites");
+    const savedFavorites = localStorage.getItem('flixster-favorites');
     return savedFavorites ? JSON.parse(savedFavorites) : [];
   });
   const [showFavorites, setShowFavorites] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("flixster-favorites", JSON.stringify(favorites));
+    localStorage.setItem('flixster-favorites', JSON.stringify(favorites));
   }, [favorites]);
 
   const [watched, setWatched] = useState(() => {
-    const savedWatched = localStorage.getItem("flixster-watched");
+    const savedWatched = localStorage.getItem('flixster-watched');
     return savedWatched ? JSON.parse(savedWatched) : [];
   });
   const [showWatched, setShowWatched] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("flixster-watched", JSON.stringify(watched));
+    localStorage.setItem('flixster-watched', JSON.stringify(watched));
   }, [watched]);
 
   const handleSearch = (query) => {
@@ -50,9 +50,9 @@ const App = () => {
   };
 
   const toggleFavorite = (movieId) => {
-    setFavorites((prevFavorites) => {
+    setFavorites(prevFavorites => {
       if (prevFavorites.includes(movieId)) {
-        return prevFavorites.filter((id) => id !== movieId);
+        return prevFavorites.filter(id => id !== movieId);
       } else {
         return [...prevFavorites, movieId];
       }
@@ -60,14 +60,14 @@ const App = () => {
   };
 
   const toggleShowFavorites = () => {
-    setShowFavorites((prev) => !prev);
+    setShowFavorites(prev => !prev);
     closeSidebar();
   };
 
   const toggleWatched = (movieId) => {
-    setWatched((prevWatched) => {
+    setWatched(prevWatched => {
       if (prevWatched.includes(movieId)) {
-        return prevWatched.filter((id) => id !== movieId);
+        return prevWatched.filter(id => id !== movieId);
       } else {
         return [...prevWatched, movieId];
       }
@@ -75,20 +75,16 @@ const App = () => {
   };
 
   const toggleShowWatched = () => {
-    setShowWatched((prev) => !prev);
+    setShowWatched(prev => !prev);
     closeSidebar();
   };
 
   return (
     <div className="App">
-      {isSidebarOpen && (
-        <div className="sidebar-overlay" onClick={closeSidebar}></div>
-      )}
+      {isSidebarOpen && <div className="sidebar-overlay" onClick={closeSidebar}></div>}
       <header className="App-header">
-        <div className="header-and-menu">
-          <button onClick={openSidebar} className="hamburger-button">
-            ☰
-          </button>
+        <div className='header-and-menu'>
+          <button onClick={openSidebar} className='hamburger-button'>☰</button>
           <Sidebar
             isOpen={isSidebarOpen}
             onFavoritesClick={toggleShowFavorites}
@@ -96,13 +92,19 @@ const App = () => {
             onWatchedClick={toggleShowWatched}
             showWatched={showWatched}
           />
-          <h1 className="app-title"> ✧ Flixster ✧ </h1>
+          <h1 className='app-title'> ✧ Flixster ✧  </h1>
         </div>
-        <div className="search-and-sort">
-          <SearchForm onSearch={handleSearch} onClear={handleClear} />
-          <SortDropdown onSortInput={handleSortInput} sortValue={sortInput} />
+        <div className='search-and-sort'>
+        <SearchForm
+          onSearch={handleSearch}
+          onClear={handleClear}
+        />
+        <SortDropdown
+          onSortInput={handleSortInput}
+          sortValue={sortInput}
+        />
         </div>
-      </header>
+      </header >
       <main>
         <MovieList
           searchQuery={searchQuery}
@@ -116,7 +118,7 @@ const App = () => {
         />
       </main>
       <footer>© 2025 Flixster by Nancy F.</footer>
-    </div>
+    </div >
   );
 };
 

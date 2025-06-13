@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import '../App.css';
 
 function SortDropdown({ onSortInput, sortValue }) {
   const handleSortInput = (e) => {
@@ -9,7 +9,10 @@ function SortDropdown({ onSortInput, sortValue }) {
   return (
     <section className="sort-dropdown">
       <label className="sort-by-label">Sort by: </label>
-      <select value={sortValue} onChange={handleSortInput}>
+      <select
+        value={sortValue}
+        onChange={handleSortInput}
+      >
         <option value="default">Default</option>
         <option value="sort-title">Title (A-Z)</option>
         <option value="sort-release-date">Release Date (Newest-Oldest)</option>

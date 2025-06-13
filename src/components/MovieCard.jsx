@@ -27,17 +27,10 @@ function MovieCard(props) {
       <article className="movie-card" onClick={openMovieModal}>
         <img src={props.poster} alt={`${props.title} Poster`} />
         <h2>{props.title}</h2>
-        <p className="movie-card-rating">
-          <strong>Rating: </strong>
-          {props.rateAvg}/10
-        </p>
+        <p className="movie-card-rating"><strong>Rating: </strong>{props.rateAvg}/10</p>
         <div className="movie-card-buttons">
-          <button onClick={handleLike} className="movie-like-button">
-            {props.isFavorite ? `❤️` : `♡`}
-          </button>
-          <button onClick={handleWatched} className="movie-watched-button">
-            {props.isWatched ? `✓` : `☐`}
-          </button>
+          <button onClick={handleLike} className="movie-like-button">{props.isFavorite ? `❤️` : `♡`}</button>
+          <button onClick={handleWatched} className="movie-watched-button">{props.isWatched ? `✓` : `☐`}</button>
         </div>
       </article>
 
