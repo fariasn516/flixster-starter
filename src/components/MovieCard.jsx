@@ -4,8 +4,6 @@ import MovieCardModal from "./MovieCardModal";
 
 function MovieCard(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
-  const [isWatched, setIsWatched] = useState(false);
 
   const openMovieModal = () => {
     setIsModalOpen(true);
@@ -17,12 +15,11 @@ function MovieCard(props) {
 
   const handleLike = (e) => {
     e.stopPropagation();
-    setIsLiked(!isLiked);
+    props.onToggleFavorite();
   };
-
   const handleWatched = (e) => {
     e.stopPropagation();
-    setIsWatched(!isWatched);
+    props.onToggleWatched();
   };
 
   return (
@@ -32,8 +29,8 @@ function MovieCard(props) {
         <h2>{props.title}</h2>
         <p className="movie-card-rating"><strong>Rating: </strong>{props.rateAvg}/10</p>
         <div className="movie-card-buttons">
-          <button onClick={handleLike} className="movie-like-button">{isLiked ? `❤️` : `♡`}</button>
-          <button onClick={handleWatched} className="movie-watched-button">{isWatched ? `✓` : `✗`}</button>
+          <button onClick={handleLike} className="movie-like-button">{props.isFavorite ? `❤️` : `♡`}</button>
+          <button onClick={handleWatched} className="movie-watched-button">{props.isWatched ? `✓` : `✗`}</button>
         </div>
       </article>
 

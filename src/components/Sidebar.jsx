@@ -1,6 +1,6 @@
 import React from "react";
 
-function Sidebar({ isOpen }) {
+function Sidebar({ isOpen, onFavoritesClick, showFavorites, onWatchedClick, showWatched }) {
     return (
         <section className={isOpen ? "sidebar-open" : "sidebar"}>
             <div className="sidebar-content">
@@ -13,10 +13,20 @@ function Sidebar({ isOpen }) {
                             <a href="/" className="home-navigation">Home</a>
                         </li>
                         <li>
-                            <a href="/favorites" className="favorites-navigation">Favorites</a>
+                            <a
+                                className={`favorites-navigation ${showFavorites ? 'active' : ''}`}
+                                onClick={onFavoritesClick}
+                            >
+                                Favorites
+                            </a>
                         </li>
                         <li>
-                            <a href="/watched" className="watched-navigation">Watched</a>
+                            <a
+                                className={`watched-navigation ${showWatched ? 'active' : ''}`}
+                                onClick={onWatchedClick}
+                            >
+                                Watched
+                            </a>
                         </li>
                     </ul>
                 </nav>

@@ -4,10 +4,11 @@ import MovieCard from "./MovieCard";
 const URL = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 const API_TOKEN = import.meta.env.VITE_API_KEY;
 
-function MovieList({ searchQuery, sortInput }) {
+function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavorites, watched, toggleWatched, showWatched }) {
   const [allMovies, setAllMovies] = useState([]);
   const [searchedMovies, setSearchedMovies] = useState([]);
   const [sortedMovies, setSortedMovies] = useState([]);
+  const [displayedMovies, setDisplayedMovies] = useState([]);
   const [loadedMovies, setLoadedMovies] = useState(12);
   const [error, setError] = useState(null);
 
@@ -40,9 +41,8 @@ function MovieList({ searchQuery, sortInput }) {
 
         setAllMovies(uniqueMovies);
       }
-      catch (error) {
-        console.error('Error fetching movies:', error);
-        setError(error.message);
+      catch (err) {
+        setError('Failed to load movies.');
       }
     };
 
@@ -83,32 +83,55 @@ function MovieList({ searchQuery, sortInput }) {
     setSortedMovies(sorted);
   }, [searchedMovies, sortInput]);
 
+  useEffect(() => {
+    if (showFavorites) {
+      const favoriteMovies = sortedMovies.filter(movie => favorites.includes(movie.id));
+      setDisplayedMovies(favoriteMovies);
+    } else {
+      setDisplayedMovies(sortedMovies);
+    }
+  }, [sortedMovies, favorites, showFavorites]);
+
+  useEffect(() => {
+    if (showWatched) {
+      const watchedMovies = sortedMovies.filter(movie => watched.includes(movie.id));
+      setDisplayedMovies(watchedMovies);
+    } else {
+      setDisplayedMovies(sortedMovies);
+    }
+  }, [sortedMovies, watched, showWatched]);
 
   const loadMoreMovies = () => {
     setLoadedMovies(shown => {
-      return shown + Math.min(12, sortedMovies.length - shown);
+      return shown + Math.min(12, displayedMovies.length - shown);
     });
   };
 
   return (
     <section className="movie-container">
-      {sortedMovies.length === 0 ? (
-        <div className="no-results">No movies found matching "{searchQuery}"</div>
+      {displayedMovies.length === 0 ? (
+        <div className="no-results">
+          {"No movies found."}
+        </div>
       ) : (
         <>
           <div className="movie-list">
-            {sortedMovies.slice(0, loadedMovies).map((movie) => (
+            {displayedMovies.slice(0, loadedMovies).map((movie) => (
               <MovieCard
                 key={movie.id}
                 id={movie.id}
                 title={movie.title}
                 poster={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 rateAvg={movie.vote_average}
+                isFavorite={favorites.includes(movie.id)}
+                onToggleFavorite={() => toggleFavorite(movie.id)}
+                isWatched={watched.includes(movie.id)}
+                onToggleWatched={() => toggleWatched(movie.id)}
               />
             ))}
           </div>
 
-          {loadedMovies < sortedMovies.length && (
+          {loadedMovies < displayedMovies.length && (
             <div className="load-button-container">
               <button className="load-button" onClick={loadMoreMovies}>
                 Load More
