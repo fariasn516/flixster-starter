@@ -7,6 +7,8 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
     const [movieDetails, setMovieDetails] = useState(null);
     const [trailer, setTrailer] = useState(null);
     const [error, setError] = useState(null);
+
+    // Fetch movie details and trailer when the modal opens
     useEffect(() => {
         const getMovieDetails = async () => {
             try {
@@ -62,10 +64,12 @@ function MovieCardModal({ isOpen, onClose, movieId }) {
         }
     }, [movieId]);
 
+    // Format genres as comma-separated list
     const formatGenres = (genres) => {
         return genres.map(genre => genre.name);
     };
 
+    // Create rating stars based on rating
     const createRatingStars = (rating) => {
         const fullStars = Math.floor(rating / 2);
         const hasHalfStar = rating % 2 >= 0.5;

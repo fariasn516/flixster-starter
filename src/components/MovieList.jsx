@@ -12,6 +12,7 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
   const [loadedMovies, setLoadedMovies] = useState(12);
   const [error, setError] = useState(null);
 
+  // Fetch all movies
   useEffect(() => {
     const getMovies = async () => {
       const totalPagesToFetch = 3;
@@ -49,6 +50,7 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
     getMovies();
   }, []);
 
+  // Search movies
   useEffect(() => {
     if (!searchQuery) {
       setSearchedMovies(allMovies);
@@ -63,6 +65,7 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
     setLoadedMovies(12);
   }, [searchQuery, allMovies]);
 
+  // Sort movies
   useEffect(() => {
     let sorted = [...searchedMovies];
 
@@ -83,6 +86,7 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
     setSortedMovies(sorted);
   }, [searchedMovies, sortInput]);
 
+  // Filter favorite movies
   useEffect(() => {
     if (showFavorites) {
       const favoriteMovies = sortedMovies.filter(movie => favorites.includes(movie.id));
@@ -92,6 +96,7 @@ function MovieList({ searchQuery, sortInput, favorites, toggleFavorite, showFavo
     }
   }, [sortedMovies, favorites, showFavorites]);
 
+  // Filter watched movies
   useEffect(() => {
     if (showWatched) {
       const watchedMovies = sortedMovies.filter(movie => watched.includes(movie.id));

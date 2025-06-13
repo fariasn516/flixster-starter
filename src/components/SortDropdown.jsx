@@ -2,6 +2,7 @@ import React from "react";
 import '../App.css';
 
 function SortDropdown({ onSortInput, sortValue }) {
+  // Handles sort input
   const handleSortInput = (e) => {
     onSortInput(e.target.value);
   };

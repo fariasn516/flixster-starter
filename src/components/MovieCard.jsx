@@ -5,6 +5,7 @@ import MovieCardModal from "./MovieCardModal";
 function MovieCard(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Functions to open and close the modal
   const openMovieModal = () => {
     setIsModalOpen(true);
   };
@@ -13,6 +14,7 @@ function MovieCard(props) {
     setIsModalOpen(false);
   };
 
+  // Functions to handle the like and watched buttons
   const handleLike = (e) => {
     e.stopPropagation();
     props.onToggleFavorite();

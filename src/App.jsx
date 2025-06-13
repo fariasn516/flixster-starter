@@ -15,6 +15,7 @@ const App = () => {
   });
   const [showFavorites, setShowFavorites] = useState(false);
 
+  // Save favorites to local storage
   useEffect(() => {
     localStorage.setItem('flixster-favorites', JSON.stringify(favorites));
   }, [favorites]);
@@ -25,10 +26,12 @@ const App = () => {
   });
   const [showWatched, setShowWatched] = useState(false);
 
+  // Save watched to local storage
   useEffect(() => {
     localStorage.setItem('flixster-watched', JSON.stringify(watched));
   }, [watched]);
 
+  // Handle search and clear actions
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
@@ -49,6 +52,7 @@ const App = () => {
     setIsSidebarOpen(false);
   };
 
+  // Handle favorites
   const toggleFavorite = (movieId) => {
     setFavorites(prevFavorites => {
       if (prevFavorites.includes(movieId)) {
@@ -64,6 +68,7 @@ const App = () => {
     closeSidebar();
   };
 
+  // Handle watched
   const toggleWatched = (movieId) => {
     setWatched(prevWatched => {
       if (prevWatched.includes(movieId)) {

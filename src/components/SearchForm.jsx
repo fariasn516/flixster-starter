@@ -4,11 +4,13 @@ import '../App.css';
 function SearchForm({ onSearch, onClear }) {
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(searchQuery);
   };
 
+  // Handle clear button
   const handleClear = () => {
     setSearchQuery("");
     onClear();
